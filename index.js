@@ -4,7 +4,7 @@
 class ContextFactory {
   /**
    * Create a new context factory
-   * 
+   *
    * @constructor
    */
   constructor () {
@@ -13,7 +13,7 @@ class ContextFactory {
 
   /**
    * Extend the context store by adding shared properties
-   * 
+   *
    * @param {String} prop
    * @param {Any} value
    */
@@ -28,7 +28,7 @@ class ContextFactory {
 
   /**
    * Extend the context store by adding per instance property
-   * 
+   *
    * @param {String} prop
    * @param {Function} fn
    */
@@ -46,14 +46,14 @@ class ContextFactory {
           })
         }
 
-        return tthis[field]
+        return this[field]
       }
     })
   }
 
   /**
    * Get a value from the context store
-   * 
+   *
    * @param {String} prop
    * @returns {Any}
    */
@@ -63,7 +63,7 @@ class ContextFactory {
 
   /**
    * Check if the prop is defined in the context store
-   * 
+   *
    * @param {String} prop
    * @returns {Boolean}
    */
@@ -73,7 +73,7 @@ class ContextFactory {
 
   /**
    * Create a new context store
-   * 
+   *
    * @returns {Object}
    */
   create () {

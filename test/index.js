@@ -10,11 +10,11 @@ describe('Test context factory', () => {
     factory = new ContextFactory()
   })
 
-  describe('factory.from(req, res)', () => {
+  describe('factory.create()', () => {
     it('should create a context store', () => {
-      let ctx = factory.from({}, {})
+      let ctx = factory.create()
 
-      assert.deepEqual(ctx, { req: {}, res: {} })
+      assert.deepEqual(ctx, {})
     })
   })
 
@@ -22,7 +22,7 @@ describe('Test context factory', () => {
     it('should set a new property', () => {
       factory.set('foo', 123)
 
-      let ctx = factory.from(true, false)
+      let ctx = factory.create()
 
       assert.equal(ctx.foo, 123)
     })
@@ -59,12 +59,12 @@ describe('Test context factory', () => {
       assert(factory.has('foo'))
     })
 
-    it('should invoke the factory only once', () => {
+    it('should invoke the getter only once', () => {
       let i = 1
 
       factory.bind('foo', () => i++)
 
-      let ctx = factory.from({}, {})
+      let ctx = factory.create()
 
       assert.equal(ctx.foo, 1)
       assert.equal(ctx.foo, 1)
