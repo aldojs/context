@@ -1,0 +1,41 @@
+{
+  "name": "aldo-context",
+  "version": "1.0.0",
+  "description": "Request context utility",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "lint": "standard index.js",
+    "prepublish": "npm run lint && npm test"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "engines": {
+    "node": ">=8.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldojs/context.git"
+  },
+  "keywords": [
+    "aldo",
+    "context",
+    "handler",
+    "middleware"
+  ],
+  "author": "absolux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aldojs/context/issues"
+  },
+  "homepage": "https://github.com/aldojs/context#readme",
+  "devDependencies": {
+    "mocha": "^5.1.1",
+    "standard": "^11.0.1"
+  }
+}
