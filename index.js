@@ -1,7 +1,7 @@
 
 'use strict'
 
-class Factory {
+class ContextFactory {
   /**
    * Create a new context factory
    * 
@@ -82,4 +82,6 @@ class Factory {
 }
 
 // exports
-exports.ContextFactory = Factory
+exports = ContextFactory
+module.exports = ContextFactory
+exports.default = ContextFactory
