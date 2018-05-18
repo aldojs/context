@@ -2,21 +2,18 @@
   "name": "aldo-context",
   "version": "1.0.0",
   "description": "Request context utility",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha",
-    "lint": "standard index.js",
-    "prepublish": "npm run lint && npm test"
+    "build": "tsc",
+    "prepublishOnly": "npm run build && npm test",
+    "test": "mocha -r ts-node/register \"test/**/*.ts\""
   },
   "files": [
-    "index.js",
-    "index.d.ts"
+    "lib"
   ],
   "engines": {
-    "node": ">=8.9"
+    "node": ">=8",
+    "npm": ">=5"
   },
   "repository": {
     "type": "git",
@@ -24,9 +21,8 @@
   },
   "keywords": [
     "aldo",
-    "context",
-    "handler",
-    "middleware"
+    "request",
+    "context"
   ],
   "author": "absolux",
   "license": "MIT",
@@ -35,7 +31,10 @@
   },
   "homepage": "https://github.com/aldojs/context#readme",
   "devDependencies": {
+    "@types/mocha": "^5.2.0",
+    "@types/node": "^8.10.14",
     "mocha": "^5.1.1",
-    "standard": "^11.0.1"
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
   }
 }

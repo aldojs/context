@@ -1,9 +1,9 @@
-/* global describe, it */
 
-const assert = require('assert')
-const ContextFactory = require('..')
+import 'mocha'
+import * as assert from 'assert'
+import { ContextFactory, Context } from '../src'
 
-let factory
+let factory: ContextFactory<Context>
 
 describe('Test context factory', () => {
   beforeEach(() => {

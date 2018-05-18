@@ -1,7 +1,16 @@
 
-'use strict'
+export interface Context {
+  [field: string]: any
+}
 
-class ContextFactory {
+export class ContextFactory<T extends Context> {
+  /**
+   * The context store
+   * 
+   * @private
+   */
+  private _store: T
+
   /**
    * Create a new context factory
    *
@@ -14,10 +23,11 @@ class ContextFactory {
   /**
    * Extend the context store by adding shared properties
    *
-   * @param {String} prop
-   * @param {Any} value
+   * @param prop
+   * @param value
+   * @public
    */
-  set (prop, value) {
+  set (prop: string, value: any) {
     Reflect.defineProperty(this._store, prop, {
       configurable: true,
       enumerable: true,
@@ -29,24 +39,25 @@ class ContextFactory {
   /**
    * Extend the context store by adding per instance property
    *
-   * @param {String} prop
-   * @param {Function} fn
+   * @param prop
+   * @param fn
+   * @public
    */
-  bind (prop, fn) {
+  bind (prop: string, fn: (ctx: T) => any) {
     var field = `_${prop}`
 
     Reflect.defineProperty(this._store, prop, {
       configurable: true,
       enumerable: true,
       get () {
-        if (this[field] === undefined) {
+        if ((this as T)[field] === undefined) {
           // private property
           Reflect.defineProperty(this, field, {
-            value: fn(this)
+            value: fn(this as T)
           })
         }
 
-        return this[field]
+        return (this as T)[field]
       }
     })
   }
@@ -54,34 +65,29 @@ class ContextFactory {
   /**
    * Get a value from the context store
    *
-   * @param {String} prop
-   * @returns {Any}
+   * @param prop
+   * @public
    */
-  get (prop) {
+  get (prop: string): any {
     return this._store[prop]
   }
 
   /**
    * Check if the prop is defined in the context store
    *
-   * @param {String} prop
-   * @returns {Boolean}
+   * @param prop
+   * @public
    */
-  has (prop) {
+  has (prop: string): boolean {
     return prop in this._store
   }
 
   /**
    * Create a new context store
    *
-   * @returns {Object}
+   * @public
    */
-  create () {
+  create (): T {
     return Object.create(this._store)
   }
 }
-
-// exports
-exports = ContextFactory
-module.exports = ContextFactory
-exports.default = ContextFactory
